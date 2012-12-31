@@ -14,7 +14,7 @@ def get_movie_genres(genre_token):
 
 def movie_parser(file_name,delimeter):
 
-    movie_attributes = ('movieid','movietitle','releasedate','videoreleasedate','url')
+    movie_attributes = ('movieid','title','release_date','videoreleasedate','url')
     
     movies = {}
     f=open(file_name)

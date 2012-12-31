@@ -5,6 +5,8 @@ from movie_manager import get_most_watched_genre
 from movie_manager import get_most_watched_movie
 from movie_manager import get_most_active_user
 from movie_manager import get_highest_rated_genre
+from movie_manager import get_top_movie_by_year
+
 
 
 def main():
@@ -21,6 +23,8 @@ def main():
     
     
     get_highest_rated_genre(movie_db)
+    
+    get_top_movie_by_year(movie_db)
     
     
 if __name__ == '__main__': 

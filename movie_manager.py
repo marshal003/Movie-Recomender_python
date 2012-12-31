@@ -69,8 +69,8 @@ def get_most_watched_genre(movie_db):
 
 def get_highest_rated_genre(movie_db):
     
-     genre_rating={}
-     for movie in movie_db:
+    genre_rating={}
+    for movie in movie_db:
         
         for genre in movie_db[movie]["genre"]:
             
@@ -78,7 +78,7 @@ def get_highest_rated_genre(movie_db):
                 genre_rating[genre] = genre_rating[genre] + movie_db[movie]["total_rating"]
             else:
                 genre_rating[genre]=movie_db[movie]["total_rating"]
-                
+    
     #max_genre_rate=0
     max_genre_rate = 0
 
@@ -94,4 +94,31 @@ def get_highest_rated_genre(movie_db):
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint("highest rated genre is :   ")
     pp.pprint(highest_rated_genre)
+
+def get_top_movie_by_year(movie_db):
+    
+    rate_by_year={}
+    movie_list_by_year={}
+    for movie in movie_db:
+        year=movie_db[movie]["release_date"]
+        year=year.strip()[-4:]
+        movie_list=[]
+        if year in rate_by_year:
+            if movie_db[movie]["total_rate"]>rate_by_year[year]:
+                rate_by_year[year]=movie_db[movie]["total_rate"]
+                movie_list=movie_list_by_year[year]
+                movie_list=[]
+                movie_list=[movie_db[movie]["title"]]
+                movie_list_by_year[year]=movie_list
+            elif movie_db[movie]["total_rate"]==rate_by_year[year]:
+                movie_list=movie_list_by_year[year]
+      
+                movie_list.append([movie_db[movie]["title"]])
+                movie_list_by_year[year]=movie_list
+        else:
+                movie_list.append([movie_db[movie]["title"]])
+                movie_list_by_year[year]=movie_list
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint("top movie by year is :   ")
+    pp.pprint(movie_list_by_year)
 
